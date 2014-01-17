@@ -9,6 +9,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.Context;
+import android.util.Log;
 
 public class GetFeedData {
 
@@ -81,6 +82,11 @@ public class GetFeedData {
                 case XmlPullParser.END_TAG:
                     name = parser.getName();
                     if (name.equalsIgnoreCase("item") && currentProduct != null){
+                    	
+                    	String lol= currentProduct.title.substring(0, 9);
+                    	
+                    	//Not adding the last site news :/
+                    	if(!lol.equals("SITE NEWS"))
                     	products.add(currentProduct);
                     } 
             }
