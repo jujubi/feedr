@@ -16,6 +16,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 public class ActivityAdapter extends ArrayAdapter<Feed>{
 
@@ -45,7 +46,7 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 			.cacheInMemory(true)
 			.cacheOnDisc(true)
 			.considerExifParams(true)
-			.imageScaleType(ImageScaleType.NONE)
+			.imageScaleType(ImageScaleType.EXACTLY)
 			.bitmapConfig(Bitmap.Config.RGB_565)
 			.build();
 
@@ -94,6 +95,8 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 	    	   Feed model = data[position];
 	    	   holder.txtTitle.setText(model.title);
 	    	   holder.description.setText(Html.fromHtml(model.description));
+	    	   
+	    	//   ImageSize targetSize = new ImageSize(104, 70); // result Bitmap will be fit to this size
 	    		imageLoader.displayImage(model.img, holder.image, options, new SimpleImageLoadingListener() {
 					 @Override
 					 public void onLoadingStarted(String imageUri, View view) {
@@ -110,6 +113,9 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 					 @Override
 					 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
 						 //holder.progressBar.setVisibility(View.GONE);
+						// holder.image.setImageBitmap(loadedImage);
+						 
+						 
 					 }
 				 }, new ImageLoadingProgressListener() {
 					 @Override
