@@ -35,17 +35,16 @@ public class GetFeedData {
 			pullParserFactory = XmlPullParserFactory.newInstance();
 			XmlPullParser parser = pullParserFactory.newPullParser();
 
-			   // InputStream in_s = ctx.getAssets().open(url);
-		       // parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-	            //parser.setInput(in_s, null);
-		        try {
+			    InputStream in_s = ctx.getAssets().open("temp.xml");
+		        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+	            parser.setInput(in_s, null);
+		       /* try {
 					parser.setInput(new InputStreamReader(getUrlData(url)));
 				} catch (URISyntaxException e) {
 					// TODO Auto-generated catch block
-					
 					e.printStackTrace();
 				}  
-
+*/
 	            return parseXML(parser);
 	            
 
@@ -81,11 +80,9 @@ public class GetFeedData {
                     } else if (currentProduct != null){
                         if (name.equals("title")){
                             currentProduct.setTitle(parser.nextText());
-                            //Log.d("LOL",currentProduct.title);
                         } else if (name.equals("link")){
                         //	currentProduct.link=parser.nextText();
-                           // Log.d("LOL",currentProduct.link);
-                       
+                                                  
                         } else if (name.equals("description")){
                         	currentProduct.setDescription(parser.nextText());
                         	// Log.d("LOL",currentProduct.description);

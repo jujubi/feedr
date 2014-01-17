@@ -6,6 +6,8 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,24 +24,25 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 
 	
 
-	Context context; 
+		Context context; 
 	    int layoutResourceId;  
 	    Feed data[] = null;
 	    DisplayImageOptions options;
 	    protected ImageLoader imageLoader = ImageLoader.getInstance();
-		 public ActivityAdapter(Context context, int layoutResourceId, Feed data[]) {
+	    private int lastPosition = -1;
+		
+	    public ActivityAdapter(Context context, int layoutResourceId, Feed data[]) {
 		
 			super(context, layoutResourceId, data);
 	        this.layoutResourceId = layoutResourceId;
 	        this.context = context;
 	        this.data = data;
 	     
+	        //Configuring Image Loader and its options
 	        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context.getApplicationContext())
-   	 	 .build();
-   	 	 ImageLoader.getInstance().init(config);
-        
-        
-   	 	 	options = new DisplayImageOptions.Builder()
+	        .build();
+   	 	 	ImageLoader.getInstance().init(config);
+         	options = new DisplayImageOptions.Builder()
 			.showImageOnLoading(R.drawable.ic_stub)
 			.showImageForEmptyUri(R.drawable.ic_empty)
 			.showImageOnFail(R.drawable.ic_error)
@@ -49,10 +52,6 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 			.imageScaleType(ImageScaleType.EXACTLY)
 			.bitmapConfig(Bitmap.Config.RGB_565)
 			.build();
-
-	        
-	        
-	        
 		}
 	    
 	    
@@ -66,15 +65,12 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 	    		   
 	    		   LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 	               row = inflater.inflate(layoutResourceId, parent, false);
-	    		   
 	               holder = new ActHolder();
 	               holder.txtTitle = (TextView)row.findViewById(R.id.title);
 	               holder.description = (TextView)row.findViewById(R.id.descr);
 	               holder.image = (ImageView) row.findViewById(R.id.img);
-	               
-	               
-	               
-	             /*  holder.icon.setOnClickListener(new OnClickListener() {
+
+	               /*  holder.icon.setOnClickListener(new OnClickListener() {
 
 						@Override
 						public void onClick(View view) {
@@ -84,20 +80,18 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 						}
 	    		     });
 	               */
-	               row.setTag(holder);
-	               
-	           }else{
+	            }else{
 	        	   
 	        	   holder = (ActHolder)row.getTag();
 	           }
 	    	   
-	    	  
+
 	    	   Feed model = data[position];
 	    	   holder.txtTitle.setText(model.title);
 	    	   holder.description.setText(Html.fromHtml(model.description));
 	    	   
-	    	//   ImageSize targetSize = new ImageSize(104, 70); // result Bitmap will be fit to this size
-	    		imageLoader.displayImage(model.img, holder.image, options, new SimpleImageLoadingListener() {
+	    	   //Image Loader taking care of Images
+	    	   imageLoader.displayImage(model.img, holder.image, options, new SimpleImageLoadingListener() {
 					 @Override
 					 public void onLoadingStarted(String imageUri, View view) {
 						// holder.progressBar.setProgress(0);
@@ -124,20 +118,22 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 						// holder.progressBar.setProgress(Math.round(100.0f * current / total));
 					 }
 				 }
-);
+	    			  );
 	    	   
+	    		
+	    	   //Adding Animation to each row
+	    	   row.setTag(holder);
+               Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.left_to_right : R.anim.left_to_right);
+               row.startAnimation(animation);
+               lastPosition = position;
 	    	   return row;
 	    	
 	    }
 	    
 	  static class ActHolder
 	    {
-	      //  ImageView imgIcon;
 	        TextView txtTitle;
 	        TextView description;
 	        ImageView image;
 	    } 
-	    
-	
-	
 }
