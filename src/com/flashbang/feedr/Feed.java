@@ -1,6 +1,10 @@
 package com.flashbang.feedr;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.util.Log;
+
 
 /**
  * @author Gleb Iakovlev
@@ -35,7 +39,13 @@ public class Feed {
 	{
 		description=a;
 		
-		
+		//Getting Image link
+		String imgRegex = "<IMG VSPACE=\"4\" HSPACE=\"4\" BORDER=\"0\" ALIGN=\"RIGHT\" SRC=\\s*['\"]([^'\"]+)['\"][^>]*>";
+		Pattern pattern = Pattern.compile(imgRegex);
+		Matcher matcher = pattern.matcher(a);
+		if (matcher.find())
+			img=matcher.group(1);
+	
 		//Getting link
 		if(description.contains("\""))
 		{

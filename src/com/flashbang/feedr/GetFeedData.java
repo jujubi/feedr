@@ -2,7 +2,6 @@ package com.flashbang.feedr;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Reader;
 import java.util.ArrayList;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -10,7 +9,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.Context;
-import android.util.Log;
 
 public class GetFeedData {
 
