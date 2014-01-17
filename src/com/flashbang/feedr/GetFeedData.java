@@ -71,11 +71,11 @@ public class GetFeedData {
                             currentProduct.setTitle(parser.nextText());
                             //Log.d("LOL",currentProduct.title);
                         } else if (name.equals("link")){
-                        	currentProduct.link=parser.nextText();
+                        //	currentProduct.link=parser.nextText();
                            // Log.d("LOL",currentProduct.link);
                        
                         } else if (name.equals("description")){
-                        	currentProduct.description=parser.nextText();
+                        	currentProduct.setDescription(parser.nextText());
                         	// Log.d("LOL",currentProduct.description);
                         }  
                     }

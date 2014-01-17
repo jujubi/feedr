@@ -3,10 +3,13 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -59,13 +62,11 @@ public class MainActivity extends Activity  {
  				  	*/
  				  		GetFeedData obj = new GetFeedData("temp.xml",getApplicationContext());
  				  		ArrayList<Feed> feed = obj.getData();
- 				  		//Log.d("LOL",feed.size()+"");
  				  		int ct=0;
  				  		model = new Feed[feed.size()];
  				  		for(int i=0;i<feed.size();i++)
  				  			model[ct++]=feed.get(i);
  				  		
- 				  		//Log.d("LOL",feed.size()+"");
  				  		return null;
 				}
 				protected void onPreExecute() {
@@ -90,7 +91,7 @@ public class MainActivity extends Activity  {
 		
    	}.execute();
          
-        /* listView.setOnItemClickListener(new OnItemClickListener() {
+        listView.setOnItemClickListener(new OnItemClickListener() {
 
 
 			@Override
@@ -98,16 +99,21 @@ public class MainActivity extends Activity  {
 					long id) {
 				
 				
-				Toast.makeText(getApplicationContext(), "Selected  item " + position  , Toast.LENGTH_SHORT).show();	
+				//Toast.makeText(getApplicationContext(), "Selected  item " + position  , Toast.LENGTH_SHORT).show();
+				String url = model[position].link;
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(url));
+				startActivity(i);
 			
 				
 			}
-            	
+
+			
             
 
         });
         
-        */
+        
   
    	
    	
