@@ -91,6 +91,7 @@ public class MainActivity extends Activity  {
 		
    	}.execute();
          
+   		//Onclick for the row
         listView.setOnItemClickListener(new OnItemClickListener() {
 
 
