@@ -12,25 +12,17 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
-/**
- * @author Gleb Iakovlev
- *
- */
-
-
-public class ActivityAdapter extends ArrayAdapter<ActivityModel>{
+public class ActivityAdapter extends ArrayAdapter<Feed>{
 
 	
 
 	Context context; 
 	    int layoutResourceId;  
 	    private int mSelectedRow = 0;
-	    ActivityModel data[] = null;
+	    Feed data[] = null;
 		private OnActionSelected actionlistener;
 		
-	    public ActivityAdapter(Context context, int layoutResourceId, ActivityModel data[]) {
+	    public ActivityAdapter(Context context, int layoutResourceId, Feed data[]) {
 		
 			super(context, layoutResourceId, data);
 	        this.layoutResourceId = layoutResourceId;
@@ -51,7 +43,6 @@ public class ActivityAdapter extends ArrayAdapter<ActivityModel>{
 	               row = inflater.inflate(layoutResourceId, parent, false);
 	    		   
 	               holder = new ActHolder();
-	               
 	               holder.txtTitle = (TextView)row.findViewById(R.id.title);
 	           //    holder.description = (TextView)row.findViewById(R.id.description);
 	            //   holder.icon = (ImageView) row.findViewById(R.id.menu);
@@ -77,7 +68,7 @@ public class ActivityAdapter extends ArrayAdapter<ActivityModel>{
 	    	   
 	    	   
 	    	
-	    	   ActivityModel model = data[position];
+	    	   Feed model = data[position];
 	    	   
 	    	   holder.txtTitle.setText(model.title);
 	    	//   holder.description.setText(model.description);
