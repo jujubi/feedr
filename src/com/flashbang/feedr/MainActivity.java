@@ -1,4 +1,6 @@
 package com.flashbang.feedr;
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -6,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-
 
 public class MainActivity extends Activity  {
 
@@ -54,9 +55,9 @@ public class MainActivity extends Activity  {
 				        	new Feed("OTHER","")
 				        	
 				        };
- 				  	/*
+ 				  	
  				  		GetFeedData obj = new GetFeedData("temp.xml",getApplicationContext());
- 				  		ArrayList<Feed> feed = obj.getData();
+ 				  		/*ArrayList<Feed> feed = obj.getData();
  				  		
  				  		int ct=0;
  				  		model = new Feed[feed.size()];
@@ -106,7 +107,9 @@ public class MainActivity extends Activity  {
         });
         
         */
-        
+  
+   	
+   	
 	}
 
 

@@ -43,7 +43,7 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 	               row = inflater.inflate(layoutResourceId, parent, false);
 	    		   
 	               holder = new ActHolder();
-	               holder.txtTitle = (TextView)row.findViewById(R.id.title);
+	              // holder.txtTitle = (TextView)row.findViewById(R.id.title);
 	           //    holder.description = (TextView)row.findViewById(R.id.description);
 	            //   holder.icon = (ImageView) row.findViewById(R.id.menu);
 	             /*  holder.icon.setOnClickListener(new OnClickListener() {
@@ -70,7 +70,7 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 	    	
 	    	   Feed model = data[position];
 	    	   
-	    	   holder.txtTitle.setText(model.title);
+	    	 //  holder.txtTitle.setText(model.title);
 	    	//   holder.description.setText(model.description);
 	    	
 	    	   return row;

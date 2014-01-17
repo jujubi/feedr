@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:orientation="vertical"
-    android:padding="3dp" >
+    android:padding="10dp" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    
-        android:background="@drawable/rowshadow" >
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="5dp"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:text="title"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="24dp"
-            android:src="@drawable/mseye" />
+    	android:background="@drawable/rowshadow" >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/imageView1"
-            android:layout_below="@+id/title"
-            android:paddingBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:fontFamily="sans-serif"
+            android:paddingBottom="10dp"
             android:paddingLeft="6dp"
             android:text="The iPhone is finally available for sale in China Mobile stores after Apple spent years negotiating for a deal with the carrier, the world&apos;s largest by subscriber number." />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView1"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="22dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/mseye" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_toLeftOf="@+id/imageView1"
+           android:layout_marginRight="20dp"
+           android:layout_above="@+id/textView1"
+           android:layout_marginBottom="22dp"
+           android:paddingLeft="10dp"
+            android:text="Feedly, Now Powering 50 RSS-Based Applications, Opens API To All Developers"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
 
