@@ -120,7 +120,6 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 				 }
 	    			  );
 	    	   
-	    		
 	    	   //Adding Animation to each row
 	    	   row.setTag(holder);
                Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.left_to_right : R.anim.left_to_right);

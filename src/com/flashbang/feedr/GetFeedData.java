@@ -2,6 +2,7 @@ package com.flashbang.feedr;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -35,18 +36,18 @@ public class GetFeedData {
 			XmlPullParser parser = pullParserFactory.newPullParser();
 
 			    //Getting from local Assets folder
-				InputStream in_s = ctx.getAssets().open("temp.xml");
+				/*InputStream in_s = ctx.getAssets().open("temp.xml");
 		        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
 	            parser.setInput(in_s, null);
-		      
+		      */
 	            //Getting from URL
-	            /* try {
+	             try {
 					parser.setInput(new InputStreamReader(getUrlData(url)));
 				} catch (URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}  
-*/
+
 	            return parseXML(parser);
 	            
 
