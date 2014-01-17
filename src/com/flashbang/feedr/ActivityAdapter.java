@@ -5,6 +5,7 @@ package com.flashbang.feedr;
 import android.app.Activity;
 import android.content.Context;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,8 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 	               row = inflater.inflate(layoutResourceId, parent, false);
 	    		   
 	               holder = new ActHolder();
-	              // holder.txtTitle = (TextView)row.findViewById(R.id.title);
-	           //    holder.description = (TextView)row.findViewById(R.id.description);
+	               holder.txtTitle = (TextView)row.findViewById(R.id.title);
+	               holder.description = (TextView)row.findViewById(R.id.descr);
 	            //   holder.icon = (ImageView) row.findViewById(R.id.menu);
 	             /*  holder.icon.setOnClickListener(new OnClickListener() {
 
@@ -70,8 +71,8 @@ public class ActivityAdapter extends ArrayAdapter<Feed>{
 	    	
 	    	   Feed model = data[position];
 	    	   
-	    	 //  holder.txtTitle.setText(model.title);
-	    	//   holder.description.setText(model.description);
+	    	   holder.txtTitle.setText(model.title);
+	    	   holder.description.setText(Html.fromHtml(model.description));
 	    	
 	    	   return row;
 	    	

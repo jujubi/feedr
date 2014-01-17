@@ -2,6 +2,7 @@ package com.flashbang.feedr;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.util.ArrayList;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -50,6 +51,7 @@ public class GetFeedData {
 	
 	private ArrayList<Feed> parseXML(XmlPullParser parser) throws XmlPullParserException,IOException
 	{
+		
 		ArrayList<Feed> products = null;
         int eventType = parser.getEventType();
         Feed currentProduct = null;
@@ -62,14 +64,25 @@ public class GetFeedData {
                 	break;
                 case XmlPullParser.START_TAG:
                     name = parser.getName();
-                  //  currentProduct = new Feed();
-                    Log.d("LOL",name);
-                    currentProduct.title=name;
+                    if (name.equals("item")){
+                        currentProduct = new Feed("b","b");
+                    } else if (currentProduct != null){
+                        if (name.equals("title")){
+                            currentProduct.setTitle(parser.nextText());
+                            //Log.d("LOL",currentProduct.title);
+                        } else if (name.equals("link")){
+                        	currentProduct.link=parser.nextText();
+                           // Log.d("LOL",currentProduct.link);
+                       
+                        } else if (name.equals("description")){
+                        	currentProduct.description=parser.nextText();
+                        	// Log.d("LOL",currentProduct.description);
+                        }  
+                    }
                     break;
                 case XmlPullParser.END_TAG:
-                    //name = parser.getName();
-
-                    if (currentProduct != null){
+                    name = parser.getName();
+                    if (name.equalsIgnoreCase("item") && currentProduct != null){
                     	products.add(currentProduct);
                     } 
             }
