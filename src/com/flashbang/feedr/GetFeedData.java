@@ -2,14 +2,20 @@ package com.flashbang.feedr;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.Context;
-import android.util.Log;
 
 public class GetFeedData {
 
@@ -29,9 +35,16 @@ public class GetFeedData {
 			pullParserFactory = XmlPullParserFactory.newInstance();
 			XmlPullParser parser = pullParserFactory.newPullParser();
 
-			    InputStream in_s = ctx.getAssets().open(url);
-		        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-	            parser.setInput(in_s, null);
+			   // InputStream in_s = ctx.getAssets().open(url);
+		       // parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+	            //parser.setInput(in_s, null);
+		        try {
+					parser.setInput(new InputStreamReader(getUrlData(url)));
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					
+					e.printStackTrace();
+				}  
 
 	            return parseXML(parser);
 	            
@@ -96,6 +109,18 @@ public class GetFeedData {
      return products;
 	}
 	
-	
+	public InputStream getUrlData(String url) 
+
+			throws URISyntaxException, ClientProtocolException, IOException {
+
+			  DefaultHttpClient client = new DefaultHttpClient();
+
+			  HttpGet method = new HttpGet(new URI(url));
+
+			  HttpResponse res = client.execute(method);
+
+			  return  res.getEntity().getContent();
+
+			}
 	
 }

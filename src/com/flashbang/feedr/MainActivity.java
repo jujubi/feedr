@@ -60,7 +60,7 @@ public class MainActivity extends Activity  {
 				        	
 				        };
  				  	*/
- 				  		GetFeedData obj = new GetFeedData("temp.xml",getApplicationContext());
+ 				  		GetFeedData obj = new GetFeedData("http://www.techmeme.com/feed.xml",getApplicationContext());
  				  		ArrayList<Feed> feed = obj.getData();
  				  		int ct=0;
  				  		model = new Feed[feed.size()];
